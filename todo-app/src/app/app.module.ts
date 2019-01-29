@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { todoReducer } from './components/todo/state/todo.reducer';
 import { TodoComponent } from './components/todo/todo.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './components/todo/state/todo.effects';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import { TodoComponent } from './components/todo/todo.component';
     AppRoutingModule,
     StoreModule.forRoot({
       todo: todoReducer
-    })
+    }),
+    EffectsModule.forRoot([
+      TodoEffects
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

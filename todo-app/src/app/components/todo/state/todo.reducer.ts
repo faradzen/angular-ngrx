@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { ActionTypes } from './todo.actions';
+import { TodoActionTypes } from './todo.actions';
 import { ITodoModel } from './todo.model';
+
 
 export const initialState: ITodoModel = {
   count: 0
@@ -13,15 +14,15 @@ export function todoReducer(state = initialState, action: Action) {
 
   switch (action.type) {
 
-    case ActionTypes.Increment:
+    case TodoActionTypes.Increment:
       result.count = result.count + 1;
       return result;
 
-    case ActionTypes.Decrement:
+    case TodoActionTypes.Decrement:
       result.count = result.count - 1;
       return result;
 
-    case ActionTypes.Reset:
+    case TodoActionTypes.Reset:
       return { ...initialState };
 
     default:

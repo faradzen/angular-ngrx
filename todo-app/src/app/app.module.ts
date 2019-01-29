@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { todoReducer } from './components/todo/state/todo.reducer';
 import { TodoComponent } from './components/todo/todo.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoEffects } from './components/todo/state/todo.effects';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,11 @@ import { TodoEffects } from './components/todo/state/todo.effects';
     }),
     EffectsModule.forRoot([
       TodoEffects
-    ])
+    ]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
